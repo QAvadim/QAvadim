@@ -1,0 +1,63 @@
+ОСНОВНЫЕ КОМАНДЫ SQL
+- Select – выбрать данные из таблицы
+- Distinct – выбрать данные без повторов из таблицы
+- Select where – выбрать данные из таблицы по условию
+- Update – обновить данные в таблице
+- Insert into – вставить данные в таблицу
+- Delete – удалить данные из таблицы
+- Group by – сгруппировать данные 
+- Order by – сортировать данные
+- Join – объединить таблицы
+- Having – выполняет функцию Where и используется с агрегатными функциями
+
+АГРЕГАТНЫЕ ФУНКЦИИ
+- Min – выбрать минимальное значение
+- Max – выбрать максимальное значение
+- Avg – выбрать среднеарифметическое значение
+- Count – посчитать количество
+- Sum – посчитать сумму
+ 
+ВИДЫ ОБЪЕДИНЕНИЙ ТАБЛИЦ
+- inner join - выводит только совпадения из обоих таблиц
+- left join - все данные из левой таблицы и только совпадения из правой
+- right join - все данные из правой таблицы и только совпадения из левой
+- full join - выведутся все данные из обеих таблиц
+
+Для тех записей, у которых нет совпадений ставится значение null
+
+-inner join находит только совпадения из таблиц, поэтому в каждой колонке у нас будут хранится данные  
+пример  
+select *
+from users 
+inner join todos 
+on users.user_id = todos.user_id
+
+-left join выводит все из левой таблички и только совпадения из правой
+select *
+from users 
+left join todos 
+on users.user_id = todos.user_id
+если в каких то столбцах нет совпадений будет стоять значения NULL
+если нам нужно найти столбцы где значения равно
+ 
+пример                                 выведет стобцы где занчения ровняется null
+select *
+from users
+left join todos
+on users.user_id = todos.user_id
+where todos.user_id is null    
+
+                                         ПОРЯДОК НАПИСАНИЯ 
+
+select i.total, c.city, count(c.city), avg(i.total)
+from Customer c 
+inner join Invoice i 
+on c.CustomerId = i.CustomerId
+where c.city not like '_r%'
+group by c.city
+HAVING count(c.city) >= 7 and avg(i.total) < 6
+order by count(c.city)
+limit 10
+
+ 
+ 
